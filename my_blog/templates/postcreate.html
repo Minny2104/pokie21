@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Post Create
+{% endblock%}
+
+{% block body %}
+
+<style>
+
+label{
+  font-size: 22px;
+  margin: 10px;
+  font-family: Georgia, serif;
+}
+input[type=text], select {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.btn-btn{
+    border-radius: 25px;
+    color: black;
+    font-size: 16px;
+    padding: 12px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: green;
+    text-decoration: none;
+}
+.btn-btn:hover{
+    background-color: darkgreen;
+    color: black;
+    text-decoration: none;
+}
+.btn-btn-btn{
+    border-radius: 25px;
+    color: black;
+    font-size: 16px;
+    padding: 12px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(220, 47, 47);
+    text-decoration: none;
+  }
+  .btn-btn-btn:hover{
+    background-color: darkred;
+    color: black;
+    text-decoration: none;
+  }
+</style>
+
+<div class="container">
+<form method="POST"class="card p-3 shadow" enctype='multipart/form-data'>
+{% csrf_token %}
+<h3><u style="text-decoration: none;font-family: Georgia, serif;"> Post Create </u></h3>
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    <input name="title" type="text" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Content</label>
+    <textarea name="content" type="text" class="form-control" required></textarea>
+  </div>
+  <form>
+  <div class="mb-3">
+    <label class="form-label">Image</label>
+    <input name="image" type="file" class="form-control" >
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Price</label>
+    <input name="price" type="text" style="width: 36%;" class="form-control" required>
+  </div>
+  <form>
+  <div class="mb-3">
+    <label class="form-label">Category</label>
+    <select name="category" style="width: 43%;" values="{{post.category}}" class="form-control" required>
+    {% for c in category %}
+        <option value={{c.id}}>{{c.name}}</option>
+    {% endfor %}
+    </select>
+  </div>
+  <p>
+    <a type="cancel" class="btn-btn" href="/blog/list/">Cancel</a>
+    <button type="submit" class="btn-btn-btn">Create</button>
+  </p>
+</form>
+</div>
+{% endblock %}

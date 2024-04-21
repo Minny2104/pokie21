@@ -1,0 +1,50 @@
+<DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>login</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/lr.css' %}">
+
+
+    </head>
+    <body>
+
+       {% if messages %}
+            {% for m in messages %}
+                <div class="alert {{m.tags}} alert-dismissible fade show" role="alert">
+                    <strong>{{m}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+            <div class="login-form">
+                <h2>Login</h2>
+                <div class="container">
+                    <div class="main">
+                        <div class="content">
+                            <div class="logo">
+                                <img src="{% static 'cat.jpeg' %}">Pokie 21
+                            </div>
+                            <h2>Log In</h2>
+                <form method="POST" >
+                {% csrf_token %}
+                        <input name="username" type="text" placeholder="Username" required autofocus>
+                        <input name="password" type="password" placeholder="Password" required autofocus>
+                    <br>
+                        <button type="submit" class="btn">login</button>
+                </form>
+            
+                <p>Create a account? <a href="/register/">click here</a></p>
+            </div>
+            <div class="form-img">
+                <img src="{% static 'cat.jpeg' %}" alt="" width="300" height="300" >
+            </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>
